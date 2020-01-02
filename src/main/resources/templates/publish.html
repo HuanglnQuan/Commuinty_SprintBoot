@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>发布 - 码匠社区</title>
+    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/bootstrapValidator.min.css"/>
+
+    <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="E:\IntelliJ IDEA\Comunity_SpringBoot\src\main\resources\static\js\bootstrapValidator.js"></script>
+</head>
+<body style="background-color: gainsboro">
+    <div th:replace="header::header"></div>
+    <div th:replace="modal::modal"></div>
+    <div class="container-fluid" style="background-color: white;
+    margin:50px;padding-bottom: 20px;border-radius: 20px;">
+        <div class="row">
+            <div class="col-lg-9 col-md-12 col-sm-12 col-xs-12">
+                <h3 style="font-weight: bolder"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span>发起</h3>
+                <hr>
+                <form action="/publish" method="post">
+                    <div class="form-group">
+                        <label for="title">问题标题（简单扼要）：</label>
+                        <input type="text" class="form-control" id="title" name="title" placeholder="问题标题..."
+                               required
+                               data-bv-notempty-message="问题标题不能为空">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="description">问题补充（必填，请参照右侧提示）：</label>
+                        <textarea class="form-control" cols="30" rows="10" id="description" name="description" placeholder="问题标题..."
+                                  required
+                                  data-bv-notempty-message="问题说明不能为空">
+                        </textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="tag">添加标签</label>
+                        <input type="text" class="form-control" id="tag" name="tag" placeholder="输入标签，以，分隔"
+                               required
+                               data-bv-notempty-message="标签不能为空">
+                    </div>
+
+                    <input type="submit" class="btn btn-success col-lg-offset-10 col-lg-2" value="确认发布">
+
+                </form>
+            </div>
+            <div class="col-lg-3 col-md-12 col-sm-12 col-xs-12">
+                <h3 style="font-weight: bolder">问题发起指南</h3>
+                • 问题标题：请用精简的语言描述您发布的问题。不超过25字 <br><br>
+                • 问题补充：详细描述您的问题内容，先确保问题描述清晰直观，并提供一些相关的资料 <br><br>
+                • 选择标签：选择一个或者多个合适的标签，用逗号分隔，每个标签不超过10个字 <br><br>
+            </div>
+        </div>
+    </div>
+</body>
+<script th:inline="javascript" type="application/javascript">
+    $(function () {
+        if ([[${error}]] != null)
+            $("#my_modal").modal("show");
+    });
+
+</script>
+</html>

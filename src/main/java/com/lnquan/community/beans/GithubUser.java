@@ -1,6 +1,6 @@
-package com.lnquan.community.dto;
+package com.lnquan.community.beans;
 
-public class User {
+public class GithubUser {
     private String login;
     private String id;
     private String bio;
@@ -58,10 +58,10 @@ public class User {
         this.avatar_url = avatar_url;
     }
 
-    public User() {
+    public GithubUser() {
     }
 
-    public User(String login, String id, String bio, String email, String avatar_url) {
+    public GithubUser(String login, String id, String bio, String email, String avatar_url) {
         this.login = login;
         this.id = id;
         this.bio = bio;

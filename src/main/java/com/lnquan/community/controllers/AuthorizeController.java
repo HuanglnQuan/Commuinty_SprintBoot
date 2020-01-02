@@ -1,27 +1,30 @@
 package com.lnquan.community.controllers;
 
 import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.JSONObject;
+import com.lnquan.community.beans.GithubUser;
+import com.lnquan.community.beans.User;
 import com.lnquan.community.dto.AccessTokenDTO;
-import com.lnquan.community.dto.User;
+import com.lnquan.community.service.UserService;
 import com.lnquan.community.utils.GitHubAuthUtil;
-import com.lnquan.community.utils.NetWorkUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import javax.annotation.processing.SupportedSourceVersion;
-import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletResponse;
+import java.util.Date;
+import java.util.UUID;
 
 @Controller
 @PropertySource("classpath:github.properties")
 public class AuthorizeController {
     @Autowired
     private GitHubAuthUtil gitHubAuthUtil;
+    @Autowired
+    private UserService userService;
     // 如果不适用Value注解，就必须配置 @ConfigurationProperties 注解指定前缀，并且为要注入的属性添加get和set方法
     @Value("${github.client.id}")
     private String client_id;
@@ -33,7 +36,7 @@ public class AuthorizeController {
     @GetMapping("/callback")
     public String callback(@RequestParam(name = "code") String code,
                            @RequestParam(name = "state") String state,
-                           HttpServletRequest request) throws Exception {
+                           HttpServletResponse response) throws Exception {
         AccessTokenDTO dto = new AccessTokenDTO();
         dto.setClient_id(client_id);
         dto.setClient_secret(client_secret);
@@ -44,9 +47,17 @@ public class AuthorizeController {
             String accessToken = gitHubAuthUtil.getAccessToken(dto);
             accessToken = accessToken.split("&")[0].split("=")[1];
             String userInfo = gitHubAuthUtil.getUserInfo(accessToken);
-            User user = JSON.parseObject(userInfo, User.class);
-            if (user != null){
-                request.getSession().setAttribute("user", user);
+            GithubUser githubUser = JSON.parseObject(userInfo, GithubUser.class);
+            if (githubUser != null){
+                User user = new User();
+                user.setAccountId(githubUser.getId());
+                user.setName(githubUser.getLogin());
+                String token = UUID.randomUUID().toString();
+                user.setToken(token);
+                user.setGmtCreate(new Date().getTime());
+                user.setGmtModified(new Date().getTime());
+                userService.addUser(user);
+                response.addCookie(new Cookie("token", token));
                 return "redirect:/";
             }else{
                 return "redirect:/";

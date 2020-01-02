@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body>
+    <div th:fragment="header">
+        <nav class="navbar navbar-default" style="background-color: cornflowerblue">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" style="color: white;font-weight: bolder;" href="#">码匠社区</a>
+                </div>
+
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                    <form class="navbar-form navbar-left">
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="搜索问题或用户">
+                        </div>
+                        <button type="submit" class="btn btn-default">搜索</button>
+                    </form>
+                    <ul class="nav navbar-nav navbar-right">
+                        <li th:if="${session.user} == null">
+                            <a style="color: white" href="https://github.com/login/oauth/authorize?client_id=d0628c0410ea983c0ad5
+                            &redirect_uri=http://localhost:8080/callback&scope=githubUser&allow_signup=true&state=1">登录
+                            </a>
+                        </li>
+                        <li class="nav" style="margin-top: 8px;">
+                            <button type="button" class="btn btn-default" id="btn_publish">
+                                <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+                                <a href="/publish" style="text-decoration: none;color: black">发起</a>
+                            </button>
+                        </li>
+
+                        <li class="dropdown" id="drop_li" th:if="${session.user} != null" style="background-color: cornflowerblue;">
+                            <a href="#" style="background-color: cornflowerblue" class="dropdown-toggle" id="drop_a" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                                <span style="font-weight: bold;color: white" th:text="${session.user.name}"></span>
+                                <span class="caret"></span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a href="#">消息中心</a></li>
+                                <li><a href="#">修改资料</a></li>
+                                <li><a href="#">退出登录</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </div>
+</body>
+</html>
