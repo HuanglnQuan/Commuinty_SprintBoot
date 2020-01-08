@@ -4,9 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+    <!--<link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
-    <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>-->
 </head>
 <body>
     <div th:fragment="header">
@@ -19,7 +19,7 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" style="color: white;font-weight: bolder;" href="#">码匠社区</a>
+                    <a class="navbar-brand" style="color: white;font-weight: bolder;" href="/">码匠社区</a>
                 </div>
 
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -35,22 +35,31 @@
                             &redirect_uri=http://localhost:8080/callback&scope=githubUser&allow_signup=true&state=1">登录
                             </a>
                         </li>
-                        <li class="nav" style="margin-top: 8px;">
+                        <li class="nav" th:if="${session.user} != null" style="margin-top: 13px;">
+                            <button class="btn btn-default" type="button" id="btn_notification"
+                                    style="border:none">
+                                <img src="/notification.png" style="width: 20px;height: 20px">
+                                通知 &nbsp;<span class="badge" id="notification_count"
+                                               th:text="${notificationNum}"
+                                         style="background-color: red;color: white"></span>
+                            </button>
+
                             <button type="button" class="btn btn-default" id="btn_publish">
                                 <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
-                                <a href="/publish" style="text-decoration: none;color: black">发起</a>
+                                <a href="/publish" style="text-decoration: none;color: black">发布</a>
                             </button>
                         </li>
 
                         <li class="dropdown" id="drop_li" th:if="${session.user} != null" style="background-color: cornflowerblue;">
-                            <a href="#" style="background-color: cornflowerblue" class="dropdown-toggle" id="drop_a" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                            <a href="#" style="background-color: cornflowerblue;padding-bottom: 10px" class="dropdown-toggle" id="drop_a" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                                <img th:src="${session.user.avatarUrl}" style="width: 30px;height: 30px;">
                                 <span style="font-weight: bold;color: white" th:text="${session.user.name}"></span>
                                 <span class="caret"></span>
                             </a>
                             <ul class="dropdown-menu">
-                                <li><a href="#">消息中心</a></li>
-                                <li><a href="#">修改资料</a></li>
-                                <li><a href="#">退出登录</a></li>
+                                <li><a href="/profile/questions">我的问题</a></li>
+                                <li><a href="/profile/replies">修改资料</a></li>
+                                <li><a href="/logout">退出登录</a></li>
                             </ul>
                         </li>
                     </ul>

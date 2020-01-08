@@ -7,13 +7,12 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class User {
+public class Notification {
     private Integer id;
-    private String accountId;
-    private String name;
-    private String token;
+    private Integer notifier;
+    private Integer receiver;
+    private Integer outerId;
+    private String type;
+    private String status;
     private Long gmtCreate;
-    private Long gmtModified;
-    private String bio;
-    private String avatarUrl;
 }

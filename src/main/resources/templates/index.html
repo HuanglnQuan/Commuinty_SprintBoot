@@ -5,15 +5,91 @@
     <meta charset="UTF-8">
     <title>码匠社区</title>
     <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/index.css">
     <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
     <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
-<body>
+<body style="background-color: gainsboro">
     <div th:replace="header::header"></div>
     <div th:replace="modal::modal"></div>
+    <div class="container-fluid" style="background-color: white;
+    margin:50px;padding-bottom: 20px;border-radius: 20px;">
+        <div class="row">
+            <div class="col-lg-9 col-md-12 col-sm-12 col-xs-12">
+                <h3 style="font-weight: bolder"><span class="glyphicon glyphicon-list" aria-hidden="true"></span> 发现</h3>
+                <hr>
+
+                <div class="media" th:each="question, questionStat : ${pagination.questions}">
+                    <div class="media-left">
+                        <a href="#">
+                            <img class="media-object question_img img-rounded" th:src="${question.user.avatarUrl}" >
+                        </a>
+                    </div>
+                    <div class="media-body">
+                        <h4 class="media-heading" >
+                            <a th:href="'/question/' + ${question.id}" th:text="${question.title}" style="color: cornflowerblue;"></a>
+                        </h4>
+                        <span class="question_desc"
+                              th:text="'摘要：' + ${question.description.substring(0, 20)} + '...'">
+                        </span>
+                        <br>
+                        <span class="question_info" th:text="' • ' + ${question.commentCount} + ' 个回复 • ' +
+                                ${question.viewCount} + ' 次浏览 • ' + ${question.likeCount} + ' 次点赞 • ' + ${question.gmtCreateDate} ">
+
+                        </span>
+                    </div>
+                </div>
+
+                <nav aria-label="Page navigation" class="col-lg-offset-8 col-lg-4" style="height: 60px;">
+                    <ul class="pagination" th:object="${pagination}">
+                        <li th:if="*{showFirst}">
+                            <a href="/?page=1" aria-label="First">
+                                <span aria-hidden="true">&lt;&lt;</span>
+                            </a>
+                        </li>
+
+                        <li th:if="*{showPrevious}">
+                            <a th:href="'/?page=' + (*{curPage}-1)" aria-label="Previous">
+                                <span aria-hidden="true">&lt;</span>
+                            </a>
+                        </li>
+
+                        <li th:each="page,stat : *{pages}">
+                            <a th:href="'/?page=' + ${page}" th:text="${page}" th:class="${pagination.curPage==page}? 'li_selected' : ''"></a>
+                        </li>
+
+                        <li th:if="*{showNext}">
+                            <a th:href="'/?page=' + (*{curPage}+1)" aria-label="Next">
+                                <span aria-hidden="true">&gt;</span>
+                            </a>
+                        </li>
+                        <li th:if="*{showLast}">
+                            <a th:href="'/?page=' + *{pageCount}" aria-label="Last">
+                                <span aria-hidden="true">&gt;&gt;</span>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+
+            </div>
+            <div class="col-lg-3 col-md-12 col-sm-12 col-xs-12">
+                <h3 style="font-weight: bolder">热门话题</h3>
+                • 问题标题：请用精简的语言描述您发布的问题。不超过25字 <br><br>
+                • 问题补充：详细描述您的问题内容，先确保问题描述清晰直观，并提供一些相关的资料 <br><br>
+                • 选择标签：选择一个或者多个合适的标签，用逗号分隔，每个标签不超过10个字 <br><br>
+            </div>
+        </div>
+    </div>
 </body>
 <script th:inline="javascript" type="application/javascript">
     $(function () {
+
+        let closable = localStorage.getItem("closable");
+        if (closable == "true"){
+            window.close();
+            localStorage.removeItem("closable");
+        }
+
         if ([[${error}]] != null)
             $("#my_modal").modal("show");
     });

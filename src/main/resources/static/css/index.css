@@ -1,0 +1,19 @@
+.question_img{
+    width: 40px;
+    height: 40px;
+}
+.question_info{
+    font-size: 12px;
+    font-weight: normal;
+    color: #999;
+}
+.question_desc{
+    font-size: 14px;
+    font-weight: normal;
+    color: gray;
+}
+.li_selected{
+    background-color: cornflowerblue !important;
+    color: white !important;
+}
+

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.lnquan.community.dao.QuestionDao">
+    <select id="queryQuestionPerPage" resultType="Question">
+    SELECT * FROM question ORDER BY gmt_create DESC LIMIT #{offset}, #{size}
+  </select>
+
+    <select id="queryByPrimaryKey" resultType="Question">
+    SELECT * FROM question WHERE id = #{id}
+  </select>
+
+    <select id="queryByUserAccountId" resultType="Question">
+    SELECT * FROM question WHERE creator = #{accountId} ORDER BY gmt_create DESC LIMIT #{offset}, #{size}
+  </select>
+
+    <update id="incViewCount" >
+        UPDATE question SET view_count = view_count + 1 WHERE id = #{id}
+    </update>
+
+    <update id="incCommentCount" >
+        UPDATE question SET comment_count = comment_count + 1 WHERE id = #{id}
+    </update>
+
+    <update id="incLikeCount">
+        UPDATE question SET like_count = like_count + 1 WHERE id = #{id}
+    </update>
+</mapper>

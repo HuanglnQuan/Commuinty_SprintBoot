@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.lnquan.community.dao.NotificationDao">
+    <select id="getUnReadNotificationNum" resultType="java.lang.Integer">
+        SELECT COUNT(1) FROM notification WHERE receiver = #{id} AND status = '0'
+    </select>
+</mapper>

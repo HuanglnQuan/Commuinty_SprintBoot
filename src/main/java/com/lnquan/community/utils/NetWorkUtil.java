@@ -97,7 +97,7 @@ public class NetWorkUtil {
                 return content;
             }
         } catch (Exception e) {
-            e.printStackTrace();
+            System.out.println("通过Git Hub授权超时！");
             return null;
         }
         return null;

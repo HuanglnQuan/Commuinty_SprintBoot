@@ -1,0 +1,29 @@
+.active{
+    background-color: cornflowerblue !important;
+}
+.li_selected{
+    background-color: cornflowerblue !important;
+    color: white !important;
+}
+.edit_a{
+    color: #999999 !important;
+    font-size: 14px !important;
+    text-decoration: none !important;
+    margin-left: 10px;
+    float: right;
+    font-weight: bold;
+}
+
+.edit_a:hover{
+    color: cornflowerblue !important;
+}
+.question_img{
+    width: 30px;
+    height: 30px;
+}
+.editA{
+    color: #42df52 !important;
+}
+.deleteA{
+    color: red !important;
+}

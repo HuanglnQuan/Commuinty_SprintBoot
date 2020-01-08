@@ -4,12 +4,12 @@
 <head>
     <meta charset="UTF-8">
     <title>发布 - 码匠社区</title>
+    <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.js"></script>
     <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/bootstrapValidator.min.css"/>
+    <link rel="stylesheet" href="/css/bootstrapValidator.min.css"/>
 
-    <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
     <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <script src="E:\IntelliJ IDEA\Comunity_SpringBoot\src\main\resources\static\js\bootstrapValidator.js"></script>
+    <script src="/js/bootstrapValidator.js"></script>
 </head>
 <body style="background-color: gainsboro">
     <div th:replace="header::header"></div>
@@ -20,17 +20,35 @@
             <div class="col-lg-9 col-md-12 col-sm-12 col-xs-12">
                 <h3 style="font-weight: bolder"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span>发起</h3>
                 <hr>
-                <form action="/publish" method="post">
+                <form id="questionForm" action="/publish" method="post" role="form">
+                    <input type="hidden" id="id" name="id" th:value="${question != null}? ${question.id}">
                     <div class="form-group">
                         <label for="title">问题标题（简单扼要）：</label>
                         <input type="text" class="form-control" id="title" name="title" placeholder="问题标题..."
-                               required
+                               th:value="${question != null}? ${question.title}"
+                               data-bv-notempty
                                data-bv-notempty-message="问题标题不能为空">
+                    </div>
+
+                    <div class="form-group" style="width: 150px;">
+                        <label for="type">选择分类：</label>
+                        <select class="form-control" id="type" name="type">
+                            <option value="0" th:selected="${question != null && question.type=='0'}">全部</option>
+                            <option value="1" th:selected="${question != null && question.type=='1'}">Elasticsearch</option>
+                            <option value="2" th:selected="${question != null && question.type=='2'}">Logstash</option>
+                            <option value="3" th:selected="${question != null && question.type=='3'}">Kibana</option>
+                            <option value="4" th:selected="${question != null && question.type=='4'}">Beats</option>
+                            <option value="5" th:selected="${question != null && question.type=='5'}">求职招聘</option>
+                            <option value="6" th:selected="${question != null && question.type=='6'}">资讯动态</option>
+                            <option value="7" th:selected="${question != null && question.type=='7'}">活动</option>
+                            <option value="8" th:selected="${question != null && question.type=='8'}">Elastic日报</option>
+                        </select>
                     </div>
 
                     <div class="form-group">
                         <label for="description">问题补充（必填，请参照右侧提示）：</label>
                         <textarea class="form-control" cols="30" rows="10" id="description" name="description" placeholder="问题标题..."
+                                  th:text="${question != null}? ${question.description}"
                                   required
                                   data-bv-notempty-message="问题说明不能为空">
                         </textarea>
@@ -38,6 +56,7 @@
                     <div class="form-group">
                         <label for="tag">添加标签</label>
                         <input type="text" class="form-control" id="tag" name="tag" placeholder="输入标签，以，分隔"
+                               th:value="${question != null}? ${question.tag}"
                                required
                                data-bv-notempty-message="标签不能为空">
                     </div>
@@ -59,6 +78,45 @@
     $(function () {
         if ([[${error}]] != null)
             $("#my_modal").modal("show");
+
+        $('#questionForm').bootstrapValidator({
+            message: 'This value is not valid',
+            feedbackIcons: {
+                valid: 'glyphicon glyphicon-ok',
+                invalid: 'glyphicon glyphicon-remove',
+                validating: 'glyphicon glyphicon-refresh'
+            },
+            fields: {
+                title: {
+                    message: '问题标题验证失败',
+                    validators: {
+                        notEmpty: {
+                            message: '问题标题不能为空'
+                        }, stringLength: {
+                            min: 6,
+                            max: 100,
+                            message: '标题长度必须在6到100位之间'
+                        }
+                    }
+                },
+                description:{
+                    message:'问题内容验证失败',
+                    validators:{
+                        notEmpty: {
+                            message: '问题内容不能为空'
+                        }
+                    }
+                },
+                tag:{
+                    message:'问题标签验证失败',
+                    validators:{
+                        notEmpty: {
+                            message: '问题标签不能为空'
+                        }
+                    }
+                }
+            }
+        });
     });
 
 </script>
