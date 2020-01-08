@@ -57,7 +57,7 @@ public class PublishController {
         if (id <= 0){
             Question question = new Question();
             question.setType(type);
-            question.setCreator(user.getAccountId());
+            question.setCreator(user.getId()+"");
             question.setDescription(description);
             question.setTag(tag);
             question.setTitle(title);

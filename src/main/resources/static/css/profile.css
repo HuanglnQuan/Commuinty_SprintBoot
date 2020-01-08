@@ -27,3 +27,27 @@
 .deleteA{
     color: red !important;
 }
+.notification_a{
+    text-decoration: none !important;
+    font-size: 16px;
+    color: cornflowerblue;
+}
+.read_a{
+    color: gray !important;
+}
+.notification_div{
+    margin: 20px;
+}
+.notification_time{
+    font-size: 14px;
+    color: #cacaca;
+}
+#btn_notification{
+    padding: 8px 10px 10px 10px;
+    display: inline-block;
+    height: 34px;
+    color: black;
+}
+#btn_notification:hover{
+    background-color: lightgray;
+}

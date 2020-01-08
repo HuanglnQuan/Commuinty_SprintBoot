@@ -4,4 +4,12 @@
     <select id="getUnReadNotificationNum" resultType="java.lang.Integer">
         SELECT COUNT(1) FROM notification WHERE receiver = #{id} AND status = '0'
     </select>
+
+    <select id="getNotificationNum" resultType="java.lang.Integer">
+        SELECT COUNT(1) FROM notification WHERE receiver = #{id}
+    </select>
+
+    <select id="queryByUserIdAndTypePerPage" resultType="Notification">
+        SELECT * FROM notification WHERE receiver = #{id} ORDER BY gmt_create DESC LIMIT #{offset}, #{size}
+    </select>
 </mapper>

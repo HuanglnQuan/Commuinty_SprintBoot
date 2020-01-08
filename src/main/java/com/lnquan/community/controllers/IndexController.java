@@ -49,10 +49,10 @@ public class IndexController {
         model.addAttribute("pagination", pagination);
 
         User user = (User)request.getSession().getAttribute("user");
-
-        int notificationNum = notificationService.getUnReadNotificationNum(user.getId());
-        model.addAttribute("notificationNum", notificationNum);
-
+        if (user != null) {
+            int notificationNum = notificationService.getUnReadNotificationNum(user.getId());
+            request.getSession().setAttribute("notificationNum", notificationNum);
+        }
         return "index";
     }
 

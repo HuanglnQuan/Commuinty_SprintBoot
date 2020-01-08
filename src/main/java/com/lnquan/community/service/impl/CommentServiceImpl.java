@@ -66,7 +66,6 @@ public class CommentServiceImpl implements CommentService {
         }
     }
 
-
     @Transactional
     @Override
     public void insert(CommentDTO commentDTO, int id) {

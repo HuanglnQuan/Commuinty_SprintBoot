@@ -36,13 +36,15 @@
                             </a>
                         </li>
                         <li class="nav" th:if="${session.user} != null" style="margin-top: 13px;">
-                            <button class="btn btn-default" type="button" id="btn_notification"
+                            <a class="btn btn-default" type="button" id="btn_notification"
+                               href="/profile/replies"
                                     style="border:none">
                                 <img src="/notification.png" style="width: 20px;height: 20px">
                                 通知 &nbsp;<span class="badge" id="notification_count"
-                                               th:text="${notificationNum}"
+                                               th:if="${session.notificationNum != null && session.notificationNum > 0}"
+                                               th:text="${session.notificationNum}"
                                          style="background-color: red;color: white"></span>
-                            </button>
+                            </a>
 
                             <button type="button" class="btn btn-default" id="btn_publish">
                                 <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>

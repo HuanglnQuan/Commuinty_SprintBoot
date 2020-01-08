@@ -7,9 +7,13 @@
     <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" href="/css/question.css">
     <link rel="stylesheet" href="/css/bootstrapValidator.min.css"/>
+    <link rel="stylesheet" href="/editormd/css/editormd.preview.css" />
     <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
     <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script src="/js/bootstrapValidator.js"></script>
+    <script src="/editormd/editormd.js"></script>
+    <script src="/editormd/lib/marked.min.js"></script>
+    <script src="/editormd/lib/prettify.min.js"></script>
 </head>
 <body style="background-color: gainsboro">
 <div th:replace="header::header"></div>
@@ -26,12 +30,23 @@
                 <span th:text="' 阅读数: ' + ${question.viewCount} + '次'" ></span>
             </span>
             <hr  class="col-lg-10 col-md-12 col-sm-12 col-xs-12">
-            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                <div class="col-lg-10 col-md-12 col-sm-12 col-xs-12"
-                          style="border:none;line-height: 40px"
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" id="question_content_div">
+                <textarea class="col-lg-10 col-md-12 col-sm-12 col-xs-12"
+                          style="display: none"
                           id="description"  th:text="${question.description}">
-                </div>
+                </textarea>
             </div>
+
+            <script type="text/javascript">
+                $(function() {
+                    var testView = editormd.markdownToHTML("question_content_div", {
+                        // markdown : "[TOC]\n### Hello world!\n## Heading 2", // Also, you can dynamic set Markdown text
+                        // htmlDecode : true,  // Enable / disable HTML tag encode.
+                        // htmlDecode : "style,script,iframe",  // Note: If enabled, you should filter some dangerous HTML tags for website security.
+                    });
+                });
+            </script>
+
             <hr  class="col-lg-10 col-md-12 col-sm-12 col-xs-12">
 
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">

@@ -7,10 +7,22 @@
     <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.js"></script>
     <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" href="/css/bootstrapValidator.min.css"/>
-
+    <link rel="stylesheet" href="/css/editormd.css" />
     <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script src="/js/bootstrapValidator.js"></script>
+    <script src="/js/editormd.min.js"></script>
 </head>
+<style>
+    #btn_notification{
+        padding: 8px 10px 10px 10px;
+        display: inline-block;
+        height: 34px;
+        color: black;
+    }
+    #btn_notification:hover{
+        background-color: lightgray;
+    }
+</style>
 <body style="background-color: gainsboro">
     <div th:replace="header::header"></div>
     <div th:replace="modal::modal"></div>
@@ -45,14 +57,26 @@
                         </select>
                     </div>
 
-                    <div class="form-group">
+                    <div class="form-group" id="question_content_div">
                         <label for="description">问题补充（必填，请参照右侧提示）：</label>
-                        <textarea class="form-control" cols="30" rows="10" id="description" name="description" placeholder="问题标题..."
+                        <textarea style="display: none" id="description" name="description" placeholder="问题标题..."
                                   th:text="${question != null}? ${question.description}"
                                   required
                                   data-bv-notempty-message="问题说明不能为空">
                         </textarea>
+
                     </div>
+
+                    <script type="text/javascript">
+                        $(function() {
+                            var editor = editormd("question_content_div", {
+                                width  : "100%",
+                                height : "350px",
+                                path   : "/editormd/lib/"
+                            });
+                        });
+                    </script>
+
                     <div class="form-group">
                         <label for="tag">添加标签</label>
                         <input type="text" class="form-control" id="tag" name="tag" placeholder="输入标签，以，分隔"
@@ -76,6 +100,7 @@
 </body>
 <script th:inline="javascript" type="application/javascript">
     $(function () {
+
         if ([[${error}]] != null)
             $("#my_modal").modal("show");
 

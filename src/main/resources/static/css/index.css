@@ -16,4 +16,13 @@
     background-color: cornflowerblue !important;
     color: white !important;
 }
+#btn_notification{
+    padding: 8px 10px 10px 10px;
+    display: inline-block;
+    height: 34px;
+    color: black;
+}
+#btn_notification:hover{
+    background-color: lightgray;
+}
 

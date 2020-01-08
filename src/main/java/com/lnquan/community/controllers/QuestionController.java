@@ -7,6 +7,7 @@ import com.lnquan.community.dto.ResultDTO;
 import com.lnquan.community.enums.CommentType;
 import com.lnquan.community.exception.CustomizeException;
 import com.lnquan.community.service.CommentService;
+import com.lnquan.community.service.NotificationService;
 import com.lnquan.community.service.QuestionService;
 import com.lnquan.community.utils.ExceptionStatus;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,9 +28,12 @@ public class QuestionController {
     private QuestionService questionService;
     @Autowired
     private CommentService commentService;
+    @Autowired
+    private NotificationService notificationService;
 
     @RequestMapping(value = "/question/{id}")
-    public String editQuestion(@PathVariable(name = "id") Integer id, Model model,
+    public String editQuestion(@PathVariable(name = "id") Integer id,
+                               Model model,
                                HttpServletRequest request){
         QuestionDTO questionDTO = questionService.queryQuestionById(id);
 
@@ -40,6 +44,14 @@ public class QuestionController {
         model.addAttribute("question", questionDTO);
         model.addAttribute("comments", commentToParentDTOS);
         return "question";
+    }
+
+    @GetMapping(value = "/read/{id}")
+    public void readNotification(@PathVariable(name = "id") Integer id,
+                                 HttpServletRequest request){
+        notificationService.updateNotificationStatus(id);
+        int tmp = (int) request.getSession().getAttribute("notificationNum");
+        request.getSession().setAttribute("notificationNum", tmp - 1);
     }
 
     @GetMapping(value = "/like/{id}/{receiver}/{type}")

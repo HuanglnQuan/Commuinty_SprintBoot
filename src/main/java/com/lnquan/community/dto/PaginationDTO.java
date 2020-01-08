@@ -13,6 +13,7 @@ import java.util.List;
 @NoArgsConstructor
 public class PaginationDTO {
     private List<QuestionDTO> questions;
+    private List<NotificationDTO> notifications;
     private boolean showPrevious = true;
     private boolean showNext = true;
     private boolean showFirst = true;

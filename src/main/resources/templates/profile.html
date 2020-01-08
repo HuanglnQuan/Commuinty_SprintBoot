@@ -18,7 +18,7 @@
                 <h3 style="font-weight: bolder" th:text="${sectionName}"></h3>
                 <hr>
 
-                <div class="media" th:each="question, questionStat : ${pagination.questions}">
+                <div class="media" th:if="${pagination.questions != null}" th:each="question, questionStat : ${pagination.questions}">
                     <div class="media-left">
                         <a href="#">
                             <img class="media-object question_img img-rounded" th:src="${question.user.avatarUrl}" >
@@ -45,6 +45,30 @@
                         </span>
 
                     </div>
+                </div>
+
+                <div class="notification_div" th:if="${pagination.notifications != null}"
+                    th:each="notification : ${pagination.notifications}">
+                    <div style="margin-bottom: 6px">
+                        <a href="#" th:text="${notification.notifier.name}" class="notification_a"
+                           th:classappend="${notification.status == 1}? read_a"></a>
+                        <span th:if="${notification.notificationType == '0'}">
+                            回复了问题
+                        </span>
+                        <span th:if="${notification.notificationType == '1'}">
+                            回复了评论
+                        </span>
+                        <span th:if="${notification.notificationType == '2'}">
+                            点赞了问题
+                        </span>
+                        <span th:if="${notification.notificationType == '3'}">
+                            点赞了评论
+                        </span>
+                        <a th:href="'/question/' + ${notification.outerId}" class="notification_a notification_link" th:data-id="${notification.id}"
+                           th:classappend="${notification.status == 1}? read_a"
+                           th:text="${notification.title}"></a>
+                    </div>
+                    <span class="notification_time" th:text="${notification.time}"></span>
                 </div>
 
                 <nav aria-label="Page navigation" class="col-lg-offset-8 col-lg-4" style="height: 60px;">
@@ -85,14 +109,29 @@
                         <span class="glyphicon glyphicon-question-sign" aria-hidden="true"></span> 我的问题
                     </a>
                     <a href="#" th:class="${section == 'replies'}? 'active list-group-item':'list-group-item'">
-                        <span class="glyphicon glyphicon-comment" aria-hidden="true"></span><span class="badge">14</span> 最新回复</a>
+                        <span class="glyphicon glyphicon-comment" aria-hidden="true"></span>
+                        <span class="badge" th:text="${session.notificationNum}"></span> 最新回复</a>
                     <a href="#" th:class="${section == 'favorites'}? 'active list-group-item':'list-group-item'">
                         <span class="glyphicon glyphicon-star" aria-hidden="true"></span> 我的收藏</a>
-                    <a href="#" th:class="${section == 'replies'}? 'active list-group-item':'list-group-item'">
+                    <a href="#" th:class="${section == 'focus'}? 'active list-group-item':'list-group-item'">
                         <span class="glyphicon glyphicon-edit" aria-hidden="true"></span> 我关注的问题</a>
                 </div>
             </div>
         </div>
     </div>
 </body>
+<script type="application/javascript">
+    $(function () {
+        $(".notification_link").click(function () {
+            let id = $(this).attr("data-id");
+            $.ajax({
+                url: "/read/" + id,
+                type: 'get',
+                success: function (res) {
+                    alert("success");
+                }
+            });
+        });
+    })
+</script>
 </html>

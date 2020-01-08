@@ -59,6 +59,7 @@ public class QuestionServiceImpl implements QuestionService {
             BeanUtils.copyProperties(question, questionDTO);
 
             questionDTO.setUser(userDao.queryByPrimaryKey(id));
+            System.out.println(questionDTO.getUser());
 
             Date createDate = new Date(question.getGmtCreate());
             Date modifiedDate = new Date(question.getGmtModified());
@@ -87,7 +88,8 @@ public class QuestionServiceImpl implements QuestionService {
             questions.addAll(tmp);
         }
         List<QuestionDTO> res = new ArrayList<>();
-        WarpQuestion(questions.subList(0, 10), res);
+        int index = Math.min(10, res.size());
+        WarpQuestion(questions.subList(0, index), res);
         return res;
     }
 
