@@ -112,6 +112,7 @@ public class CommentServiceImpl implements CommentService {
                 questionDao.incCommentCount(commentDTO.getParentId());
             }
         }
-        notificationDao.insertSelective(notification);
+        if (notification.getNotifier().equals(notification.getReceiver()))
+            notificationDao.insertSelective(notification);
     }
 }

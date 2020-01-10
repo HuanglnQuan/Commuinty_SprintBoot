@@ -7,6 +7,8 @@ import java.util.List;
 
 public interface QuestionService {
 
+    int getQuestionNumBySearch(String condition);
+
     List<QuestionDTO> queryRelativeQuestions(String tag);
 
     void addQuestion(Question question);
@@ -19,7 +21,7 @@ public interface QuestionService {
 
     int getUserQuestionNum(int id);
 
-    List<QuestionDTO> queryQuestionPerPage(int curPage, int size);
+    List<QuestionDTO> queryQuestionPerPage(String search, int curPage, int size);
 
     List<QuestionDTO> queryByUserAccountId(String accountId, int offset, int size);
 

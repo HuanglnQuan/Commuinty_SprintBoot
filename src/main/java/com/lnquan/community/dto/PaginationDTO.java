@@ -18,6 +18,7 @@ public class PaginationDTO {
     private boolean showNext = true;
     private boolean showFirst = true;
     private boolean showLast = true;
+    private String search;
     private int curPage;
     private List<Integer> pages;
     private int pageCount;
@@ -32,6 +33,8 @@ public class PaginationDTO {
         int count = 0;
         if (curPage == 1){
             this.showPrevious = false;
+            if(curPage == pageCount)
+                this.showNext = false;
             while (count < btnSize){
                 if (curPage+count > pageCount)
                     break;

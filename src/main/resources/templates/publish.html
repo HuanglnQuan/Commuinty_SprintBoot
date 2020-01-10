@@ -72,7 +72,10 @@
                             var editor = editormd("question_content_div", {
                                 width  : "100%",
                                 height : "350px",
-                                path   : "/editormd/lib/"
+                                path   : "/editormd/lib/",
+                                imageUpload    : true,
+                                imageFormats   : ["jpg", "jpeg", "gif", "png", "bmp", "webp"],
+                                imageUploadURL : "/file/upload"
                             });
                         });
                     </script>

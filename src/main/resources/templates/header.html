@@ -23,11 +23,11 @@
                 </div>
 
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                    <form class="navbar-form navbar-left">
+                    <form class="navbar-form navbar-left" action="/" method="get">
                         <div class="form-group">
-                            <input type="text" class="form-control" placeholder="搜索问题或用户">
+                            <input type="text" class="form-control" id="search_input" name="search" placeholder="搜索问题或用户">
                         </div>
-                        <button type="submit" class="btn btn-default">搜索</button>
+                        <button type="submit" class="btn btn-default" id="search_btn">搜索</button>
                     </form>
                     <ul class="nav navbar-nav navbar-right">
                         <li th:if="${session.user} == null">
@@ -70,4 +70,5 @@
         </nav>
     </div>
 </body>
+
 </html>

@@ -24,4 +24,13 @@
     <update id="incLikeCount">
         UPDATE question SET like_count = like_count + 1 WHERE id = #{id}
     </update>
+
+    <select id="queryQuestionByConditionPerPage" resultType="Question">
+        SELECT * FROM question WHERE title REGEXP #{condition}
+        ORDER BY gmt_create DESC LIMIT #{offset}, #{size}
+    </select>
+
+    <select id="getQuestionNumBySearch" resultType="java.lang.Integer">
+        SELECT COUNT(*) FROM question WHERE title REGEXP #{condition}
+    </select>
 </mapper>

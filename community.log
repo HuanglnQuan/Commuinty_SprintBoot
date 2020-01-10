@@ -1,0 +1,113 @@
+2020-01-10 19:31:03.334  INFO 16568 --- [restartedMain] c.lnquan.community.CommunityApplication  : Starting CommunityApplication on LAPTOP-7BE55UFE with PID 16568 (started by a in E:\IntelliJ IDEA\Comunity_SpringBoot)
+2020-01-10 19:31:03.337  INFO 16568 --- [restartedMain] c.lnquan.community.CommunityApplication  : No active profile set, falling back to default profiles: default
+2020-01-10 19:31:03.396  INFO 16568 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2020-01-10 19:31:03.397  INFO 16568 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2020-01-10 19:31:04.645  INFO 16568 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2020-01-10 19:31:04.654  INFO 16568 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2020-01-10 19:31:04.655  INFO 16568 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.29]
+2020-01-10 19:31:04.765  INFO 16568 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2020-01-10 19:31:04.765  INFO 16568 --- [restartedMain] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 1367 ms
+2020-01-10 19:31:05.946  INFO 16568 --- [restartedMain] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2020-01-10 19:31:05.999  INFO 16568 --- [restartedMain] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page template: index
+2020-01-10 19:31:06.299  INFO 16568 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2020-01-10 19:31:06.351  INFO 16568 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2020-01-10 19:31:06.354  INFO 16568 --- [restartedMain] c.lnquan.community.CommunityApplication  : Started CommunityApplication in 3.464 seconds (JVM running for 4.642)
+2020-01-10 19:31:14.222  INFO 16568 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2020-01-10 19:31:14.222  INFO 16568 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2020-01-10 19:31:14.232  INFO 16568 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 9 ms
+2020-01-10 19:31:14.299  INFO 16568 --- [http-nio-8080-exec-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2020-01-10 19:31:14.493  INFO 16568 --- [http-nio-8080-exec-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2020-01-10 19:31:14.500 DEBUG 16568 --- [http-nio-8080-exec-1] c.l.c.dao.UserDao.selectByExample        : ==>  Preparing: select ID, ACCOUNT_ID, NAME, TOKEN, GMT_CREATE, GMT_MODIFIED, BIO, AVATAR_URL from USER WHERE ( TOKEN = ? ) 
+2020-01-10 19:31:14.519 DEBUG 16568 --- [http-nio-8080-exec-1] c.l.c.dao.UserDao.selectByExample        : ==> Parameters: 2c2ce06e-3f01-40f3-b54f-f5feb52b303b(String)
+2020-01-10 19:31:14.538 DEBUG 16568 --- [http-nio-8080-exec-1] c.l.c.dao.UserDao.selectByExample        : <==      Total: 1
+2020-01-10 19:31:14.570 DEBUG 16568 --- [http-nio-8080-exec-1] c.l.c.dao.QuestionDao.countByExample     : ==>  Preparing: select count(*) from question 
+2020-01-10 19:31:14.570 DEBUG 16568 --- [http-nio-8080-exec-1] c.l.c.dao.QuestionDao.countByExample     : ==> Parameters: 
+2020-01-10 19:31:14.574 DEBUG 16568 --- [http-nio-8080-exec-1] c.l.c.dao.QuestionDao.countByExample     : <==      Total: 1
+2020-01-10 19:31:14.575 DEBUG 16568 --- [http-nio-8080-exec-1] c.l.c.d.Q.queryQuestionPerPage           : ==>  Preparing: SELECT * FROM question ORDER BY gmt_create DESC LIMIT ?, ? 
+2020-01-10 19:31:14.576 DEBUG 16568 --- [http-nio-8080-exec-1] c.l.c.d.Q.queryQuestionPerPage           : ==> Parameters: 0(Integer), 5(Integer)
+2020-01-10 19:31:14.582 DEBUG 16568 --- [http-nio-8080-exec-1] c.l.c.d.Q.queryQuestionPerPage           : <==      Total: 5
+2020-01-10 19:31:14.588 DEBUG 16568 --- [http-nio-8080-exec-1] c.l.c.dao.UserDao.queryByPrimaryKey      : ==>  Preparing: SELECT * FROM user WHERE id = ? 
+2020-01-10 19:31:14.589 DEBUG 16568 --- [http-nio-8080-exec-1] c.l.c.dao.UserDao.queryByPrimaryKey      : ==> Parameters: 1(String)
+2020-01-10 19:31:14.594 DEBUG 16568 --- [http-nio-8080-exec-1] c.l.c.dao.UserDao.queryByPrimaryKey      : <==      Total: 1
+2020-01-10 19:31:14.595 DEBUG 16568 --- [http-nio-8080-exec-1] c.l.c.dao.UserDao.queryByPrimaryKey      : ==>  Preparing: SELECT * FROM user WHERE id = ? 
+2020-01-10 19:31:14.596 DEBUG 16568 --- [http-nio-8080-exec-1] c.l.c.dao.UserDao.queryByPrimaryKey      : ==> Parameters: 1(String)
+2020-01-10 19:31:14.600 DEBUG 16568 --- [http-nio-8080-exec-1] c.l.c.dao.UserDao.queryByPrimaryKey      : <==      Total: 1
+2020-01-10 19:31:14.600 DEBUG 16568 --- [http-nio-8080-exec-1] c.l.c.dao.UserDao.queryByPrimaryKey      : ==>  Preparing: SELECT * FROM user WHERE id = ? 
+2020-01-10 19:31:14.601 DEBUG 16568 --- [http-nio-8080-exec-1] c.l.c.dao.UserDao.queryByPrimaryKey      : ==> Parameters: 1(String)
+2020-01-10 19:31:14.603 DEBUG 16568 --- [http-nio-8080-exec-1] c.l.c.dao.UserDao.queryByPrimaryKey      : <==      Total: 1
+2020-01-10 19:31:14.604 DEBUG 16568 --- [http-nio-8080-exec-1] c.l.c.dao.UserDao.queryByPrimaryKey      : ==>  Preparing: SELECT * FROM user WHERE id = ? 
+2020-01-10 19:31:14.604 DEBUG 16568 --- [http-nio-8080-exec-1] c.l.c.dao.UserDao.queryByPrimaryKey      : ==> Parameters: 1(String)
+2020-01-10 19:31:14.609 DEBUG 16568 --- [http-nio-8080-exec-1] c.l.c.dao.UserDao.queryByPrimaryKey      : <==      Total: 1
+2020-01-10 19:31:14.609 DEBUG 16568 --- [http-nio-8080-exec-1] c.l.c.dao.UserDao.queryByPrimaryKey      : ==>  Preparing: SELECT * FROM user WHERE id = ? 
+2020-01-10 19:31:14.609 DEBUG 16568 --- [http-nio-8080-exec-1] c.l.c.dao.UserDao.queryByPrimaryKey      : ==> Parameters: 1(String)
+2020-01-10 19:31:14.612 DEBUG 16568 --- [http-nio-8080-exec-1] c.l.c.dao.UserDao.queryByPrimaryKey      : <==      Total: 1
+2020-01-10 19:31:14.613 DEBUG 16568 --- [http-nio-8080-exec-1] c.l.c.d.N.getUnReadNotificationNum       : ==>  Preparing: SELECT COUNT(1) FROM notification WHERE receiver = ? AND status = '0' 
+2020-01-10 19:31:14.613 DEBUG 16568 --- [http-nio-8080-exec-1] c.l.c.d.N.getUnReadNotificationNum       : ==> Parameters: 1(Integer)
+2020-01-10 19:31:14.616 DEBUG 16568 --- [http-nio-8080-exec-1] c.l.c.d.N.getUnReadNotificationNum       : <==      Total: 1
+2020-01-10 19:31:15.085 DEBUG 16568 --- [http-nio-8080-exec-3] c.l.c.dao.UserDao.selectByExample        : ==>  Preparing: select ID, ACCOUNT_ID, NAME, TOKEN, GMT_CREATE, GMT_MODIFIED, BIO, AVATAR_URL from USER WHERE ( TOKEN = ? ) 
+2020-01-10 19:31:15.086 DEBUG 16568 --- [http-nio-8080-exec-3] c.l.c.dao.UserDao.selectByExample        : ==> Parameters: 2c2ce06e-3f01-40f3-b54f-f5feb52b303b(String)
+2020-01-10 19:31:15.086 DEBUG 16568 --- [http-nio-8080-exec-4] c.l.c.dao.UserDao.selectByExample        : ==>  Preparing: select ID, ACCOUNT_ID, NAME, TOKEN, GMT_CREATE, GMT_MODIFIED, BIO, AVATAR_URL from USER WHERE ( TOKEN = ? ) 
+2020-01-10 19:31:15.087 DEBUG 16568 --- [http-nio-8080-exec-2] c.l.c.dao.UserDao.selectByExample        : ==>  Preparing: select ID, ACCOUNT_ID, NAME, TOKEN, GMT_CREATE, GMT_MODIFIED, BIO, AVATAR_URL from USER WHERE ( TOKEN = ? ) 
+2020-01-10 19:31:15.087 DEBUG 16568 --- [http-nio-8080-exec-4] c.l.c.dao.UserDao.selectByExample        : ==> Parameters: 2c2ce06e-3f01-40f3-b54f-f5feb52b303b(String)
+2020-01-10 19:31:15.087 DEBUG 16568 --- [http-nio-8080-exec-2] c.l.c.dao.UserDao.selectByExample        : ==> Parameters: 2c2ce06e-3f01-40f3-b54f-f5feb52b303b(String)
+2020-01-10 19:31:15.099 DEBUG 16568 --- [http-nio-8080-exec-3] c.l.c.dao.UserDao.selectByExample        : <==      Total: 1
+2020-01-10 19:31:15.099 DEBUG 16568 --- [http-nio-8080-exec-4] c.l.c.dao.UserDao.selectByExample        : <==      Total: 1
+2020-01-10 19:31:15.099 DEBUG 16568 --- [http-nio-8080-exec-2] c.l.c.dao.UserDao.selectByExample        : <==      Total: 1
+2020-01-10 19:32:08.755  INFO 16568 --- [Thread-12] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
+2020-01-10 19:32:08.756  INFO 16568 --- [Thread-12] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2020-01-10 19:32:08.763  INFO 16568 --- [Thread-12] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2020-01-10 19:32:09.388  INFO 16568 --- [restartedMain] c.lnquan.community.CommunityApplication  : Starting CommunityApplication on LAPTOP-7BE55UFE with PID 16568 (started by a in E:\IntelliJ IDEA\Comunity_SpringBoot)
+2020-01-10 19:32:09.389  INFO 16568 --- [restartedMain] c.lnquan.community.CommunityApplication  : No active profile set, falling back to default profiles: default
+2020-01-10 19:32:09.699  WARN 16568 --- [restartedMain] org.apache.tomcat.util.modeler.Registry  : The MBean registry cannot be disabled because it has already been initialised
+2020-01-10 19:32:09.759  INFO 16568 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2020-01-10 19:32:09.760  INFO 16568 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2020-01-10 19:32:09.760  INFO 16568 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.29]
+2020-01-10 19:32:09.790  INFO 16568 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2020-01-10 19:32:09.790  INFO 16568 --- [restartedMain] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 399 ms
+2020-01-10 19:32:10.042  INFO 16568 --- [restartedMain] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2020-01-10 19:32:10.058  INFO 16568 --- [restartedMain] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page template: index
+2020-01-10 19:32:10.308  INFO 16568 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2020-01-10 19:32:10.341  INFO 16568 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2020-01-10 19:32:10.342  INFO 16568 --- [restartedMain] c.lnquan.community.CommunityApplication  : Started CommunityApplication in 0.991 seconds (JVM running for 68.63)
+2020-01-10 19:32:10.344  INFO 16568 --- [restartedMain] .ConditionEvaluationDeltaLoggingListener : Condition evaluation unchanged
+2020-01-10 19:32:10.345  INFO 16568 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2020-01-10 19:32:10.346  INFO 16568 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2020-01-10 19:32:10.354  INFO 16568 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 8 ms
+2020-01-10 19:32:10.357  INFO 16568 --- [http-nio-8080-exec-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Starting...
+2020-01-10 19:32:10.365  INFO 16568 --- [http-nio-8080-exec-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Start completed.
+2020-01-10 19:32:10.366 DEBUG 16568 --- [http-nio-8080-exec-1] c.l.c.dao.UserDao.selectByExample        : ==>  Preparing: select ID, ACCOUNT_ID, NAME, TOKEN, GMT_CREATE, GMT_MODIFIED, BIO, AVATAR_URL from USER WHERE ( TOKEN = ? ) 
+2020-01-10 19:32:10.366 DEBUG 16568 --- [http-nio-8080-exec-1] c.l.c.dao.UserDao.selectByExample        : ==> Parameters: 2c2ce06e-3f01-40f3-b54f-f5feb52b303b(String)
+2020-01-10 19:32:10.367 DEBUG 16568 --- [http-nio-8080-exec-1] c.l.c.dao.UserDao.selectByExample        : <==      Total: 1
+2020-01-10 19:32:10.374 DEBUG 16568 --- [http-nio-8080-exec-1] c.l.c.dao.QuestionDao.countByExample     : ==>  Preparing: select count(*) from question 
+2020-01-10 19:32:10.374 DEBUG 16568 --- [http-nio-8080-exec-1] c.l.c.dao.QuestionDao.countByExample     : ==> Parameters: 
+2020-01-10 19:32:10.375 DEBUG 16568 --- [http-nio-8080-exec-1] c.l.c.dao.QuestionDao.countByExample     : <==      Total: 1
+2020-01-10 19:32:10.376 DEBUG 16568 --- [http-nio-8080-exec-1] c.l.c.d.Q.queryQuestionPerPage           : ==>  Preparing: SELECT * FROM question ORDER BY gmt_create DESC LIMIT ?, ? 
+2020-01-10 19:32:10.377 DEBUG 16568 --- [http-nio-8080-exec-1] c.l.c.d.Q.queryQuestionPerPage           : ==> Parameters: 0(Integer), 5(Integer)
+2020-01-10 19:32:10.379 DEBUG 16568 --- [http-nio-8080-exec-1] c.l.c.d.Q.queryQuestionPerPage           : <==      Total: 5
+2020-01-10 19:32:10.384 DEBUG 16568 --- [http-nio-8080-exec-1] c.l.c.dao.UserDao.queryByPrimaryKey      : ==>  Preparing: SELECT * FROM user WHERE id = ? 
+2020-01-10 19:32:10.385 DEBUG 16568 --- [http-nio-8080-exec-1] c.l.c.dao.UserDao.queryByPrimaryKey      : ==> Parameters: 1(String)
+2020-01-10 19:32:10.387 DEBUG 16568 --- [http-nio-8080-exec-1] c.l.c.dao.UserDao.queryByPrimaryKey      : <==      Total: 1
+2020-01-10 19:32:10.388 DEBUG 16568 --- [http-nio-8080-exec-1] c.l.c.dao.UserDao.queryByPrimaryKey      : ==>  Preparing: SELECT * FROM user WHERE id = ? 
+2020-01-10 19:32:10.389 DEBUG 16568 --- [http-nio-8080-exec-1] c.l.c.dao.UserDao.queryByPrimaryKey      : ==> Parameters: 1(String)
+2020-01-10 19:32:10.390 DEBUG 16568 --- [http-nio-8080-exec-1] c.l.c.dao.UserDao.queryByPrimaryKey      : <==      Total: 1
+2020-01-10 19:32:10.390 DEBUG 16568 --- [http-nio-8080-exec-1] c.l.c.dao.UserDao.queryByPrimaryKey      : ==>  Preparing: SELECT * FROM user WHERE id = ? 
+2020-01-10 19:32:10.391 DEBUG 16568 --- [http-nio-8080-exec-1] c.l.c.dao.UserDao.queryByPrimaryKey      : ==> Parameters: 1(String)
+2020-01-10 19:32:10.392 DEBUG 16568 --- [http-nio-8080-exec-1] c.l.c.dao.UserDao.queryByPrimaryKey      : <==      Total: 1
+2020-01-10 19:32:10.393 DEBUG 16568 --- [http-nio-8080-exec-1] c.l.c.dao.UserDao.queryByPrimaryKey      : ==>  Preparing: SELECT * FROM user WHERE id = ? 
+2020-01-10 19:32:10.393 DEBUG 16568 --- [http-nio-8080-exec-1] c.l.c.dao.UserDao.queryByPrimaryKey      : ==> Parameters: 1(String)
+2020-01-10 19:32:10.394 DEBUG 16568 --- [http-nio-8080-exec-1] c.l.c.dao.UserDao.queryByPrimaryKey      : <==      Total: 1
+2020-01-10 19:32:10.395 DEBUG 16568 --- [http-nio-8080-exec-1] c.l.c.dao.UserDao.queryByPrimaryKey      : ==>  Preparing: SELECT * FROM user WHERE id = ? 
+2020-01-10 19:32:10.395 DEBUG 16568 --- [http-nio-8080-exec-1] c.l.c.dao.UserDao.queryByPrimaryKey      : ==> Parameters: 1(String)
+2020-01-10 19:32:10.396 DEBUG 16568 --- [http-nio-8080-exec-1] c.l.c.dao.UserDao.queryByPrimaryKey      : <==      Total: 1
+2020-01-10 19:32:10.397 DEBUG 16568 --- [http-nio-8080-exec-1] c.l.c.d.N.getUnReadNotificationNum       : ==>  Preparing: SELECT COUNT(1) FROM notification WHERE receiver = ? AND status = '0' 
+2020-01-10 19:32:10.397 DEBUG 16568 --- [http-nio-8080-exec-1] c.l.c.d.N.getUnReadNotificationNum       : ==> Parameters: 1(Integer)
+2020-01-10 19:32:10.399 DEBUG 16568 --- [http-nio-8080-exec-1] c.l.c.d.N.getUnReadNotificationNum       : <==      Total: 1
+2020-01-10 19:32:10.495 DEBUG 16568 --- [http-nio-8080-exec-3] c.l.c.dao.UserDao.selectByExample        : ==>  Preparing: select ID, ACCOUNT_ID, NAME, TOKEN, GMT_CREATE, GMT_MODIFIED, BIO, AVATAR_URL from USER WHERE ( TOKEN = ? ) 
+2020-01-10 19:32:10.497 DEBUG 16568 --- [http-nio-8080-exec-3] c.l.c.dao.UserDao.selectByExample        : ==> Parameters: 2c2ce06e-3f01-40f3-b54f-f5feb52b303b(String)
+2020-01-10 19:32:10.532 DEBUG 16568 --- [http-nio-8080-exec-3] c.l.c.dao.UserDao.selectByExample        : <==      Total: 1
+2020-01-10 19:32:10.534 DEBUG 16568 --- [http-nio-8080-exec-5] c.l.c.dao.UserDao.selectByExample        : ==>  Preparing: select ID, ACCOUNT_ID, NAME, TOKEN, GMT_CREATE, GMT_MODIFIED, BIO, AVATAR_URL from USER WHERE ( TOKEN = ? ) 
+2020-01-10 19:32:10.535 DEBUG 16568 --- [http-nio-8080-exec-5] c.l.c.dao.UserDao.selectByExample        : ==> Parameters: 2c2ce06e-3f01-40f3-b54f-f5feb52b303b(String)
+2020-01-10 19:32:10.554 DEBUG 16568 --- [http-nio-8080-exec-5] c.l.c.dao.UserDao.selectByExample        : <==      Total: 1
+2020-01-10 19:32:10.556 DEBUG 16568 --- [http-nio-8080-exec-2] c.l.c.dao.UserDao.selectByExample        : ==>  Preparing: select ID, ACCOUNT_ID, NAME, TOKEN, GMT_CREATE, GMT_MODIFIED, BIO, AVATAR_URL from USER WHERE ( TOKEN = ? ) 
+2020-01-10 19:32:10.557 DEBUG 16568 --- [http-nio-8080-exec-2] c.l.c.dao.UserDao.selectByExample        : ==> Parameters: 2c2ce06e-3f01-40f3-b54f-f5feb52b303b(String)
+2020-01-10 19:32:10.562 DEBUG 16568 --- [http-nio-8080-exec-2] c.l.c.dao.UserDao.selectByExample        : <==      Total: 1

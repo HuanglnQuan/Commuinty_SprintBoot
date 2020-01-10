@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="css/index.css">
     <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
     <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="/js/common.js"></script>
 </head>
 <body style="background-color: gainsboro">
     <div th:replace="header::header"></div>
@@ -35,7 +36,6 @@
                         <br>
                         <span class="question_info" th:text="' • ' + ${question.commentCount} + ' 个回复 • ' +
                                 ${question.viewCount} + ' 次浏览 • ' + ${question.likeCount} + ' 次点赞 • ' + ${question.gmtCreateDate} ">
-
                         </span>
                     </div>
                 </div>
@@ -43,28 +43,39 @@
                 <nav aria-label="Page navigation" class="col-lg-offset-8 col-lg-4" style="height: 60px;">
                     <ul class="pagination" th:object="${pagination}">
                         <li th:if="*{showFirst}">
-                            <a href="/?page=1" aria-label="First">
+                            <a th:href="${pagination.search != null}?
+                                '/?search=' + ${pagination.search} + '&page=1'
+                                :'/?page=1'" aria-label="First">
                                 <span aria-hidden="true">&lt;&lt;</span>
                             </a>
                         </li>
 
                         <li th:if="*{showPrevious}">
-                            <a th:href="'/?page=' + (*{curPage}-1)" aria-label="Previous">
+                            <a th:href="${pagination.search != null}?
+                            '/?search=' + ${pagination.search} + '&page=' + (*{curPage}-1):
+                            '/?page=' + (*{curPage}-1)" aria-label="Previous">
                                 <span aria-hidden="true">&lt;</span>
                             </a>
                         </li>
 
                         <li th:each="page,stat : *{pages}">
-                            <a th:href="'/?page=' + ${page}" th:text="${page}" th:class="${pagination.curPage==page}? 'li_selected' : ''"></a>
+                            <a th:href="${pagination.search != null}?
+                            '/?search=' + ${pagination.search} + '&page=' + ${page}:
+                            '/?page=' + ${page}"
+                               th:text="${page}" th:class="${pagination.curPage==page}? 'li_selected' : ''"></a>
                         </li>
 
                         <li th:if="*{showNext}">
-                            <a th:href="'/?page=' + (*{curPage}+1)" aria-label="Next">
+                            <a th:href="${pagination.search != null}?
+                            '/?search=' + ${pagination.search} + '&page=' + (*{curPage}+1):
+                            '/?page=' + (*{curPage}+1)" aria-label="Previous">
                                 <span aria-hidden="true">&gt;</span>
                             </a>
                         </li>
                         <li th:if="*{showLast}">
-                            <a th:href="'/?page=' + *{pageCount}" aria-label="Last">
+                            <a th:href="${pagination.search != null}?
+                            '/?search=' + ${pagination.search} + '&page=' + ${pagination.pageCount}:
+                            '/?page=' + ${pagination.pageCount}" aria-label="Last">
                                 <span aria-hidden="true">&gt;&gt;</span>
                             </a>
                         </li>

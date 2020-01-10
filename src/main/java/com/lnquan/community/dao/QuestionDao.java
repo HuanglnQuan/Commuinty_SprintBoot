@@ -91,4 +91,10 @@ public interface QuestionDao {
     void incCommentCount(int id);
 
     void incLikeCount(int id);
+
+    List<Question> queryQuestionByConditionPerPage(@Param("condition") String condition,
+                                                   @Param("offset") int offset,
+                                                   @Param("size") int size);
+
+    int getQuestionNumBySearch(String condition);
 }

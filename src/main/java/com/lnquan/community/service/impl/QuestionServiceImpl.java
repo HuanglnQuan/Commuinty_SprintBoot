@@ -20,7 +20,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
@@ -59,7 +58,6 @@ public class QuestionServiceImpl implements QuestionService {
             BeanUtils.copyProperties(question, questionDTO);
 
             questionDTO.setUser(userDao.queryByPrimaryKey(id));
-            System.out.println(questionDTO.getUser());
 
             Date createDate = new Date(question.getGmtCreate());
             Date modifiedDate = new Date(question.getGmtModified());
@@ -167,10 +165,18 @@ public class QuestionServiceImpl implements QuestionService {
     }
 
     @Override
-    public List<QuestionDTO> queryQuestionPerPage(int curPage, int size) {
-        int offset = Math.max(0, (curPage - 1) * size);
+    public int getQuestionNumBySearch(String condition) {
+        return questionDao.getQuestionNumBySearch(condition);
+    }
 
-        List<Question> questions = questionDao.queryQuestionPerPage(offset, size);
+    @Override
+    public List<QuestionDTO> queryQuestionPerPage(String condition, int curPage, int size) {
+        int offset = Math.max(0, (curPage - 1) * size);
+        List<Question> questions = null;
+        if (condition != null && condition.length() > 0){
+            questions = questionDao.queryQuestionByConditionPerPage(condition, offset, size);
+        }else
+            questions = questionDao.queryQuestionPerPage(offset, size);
         List<QuestionDTO> res = new ArrayList<>();
         WarpQuestion(questions, res);
         return res;

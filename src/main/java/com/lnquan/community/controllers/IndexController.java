@@ -34,15 +34,28 @@ public class IndexController {
     @RequestMapping(value = "/")
     public String goIndex(HttpServletRequest request, Model model,
                           @RequestParam(value = "page", defaultValue = "1") Integer curPage,
-                          @RequestParam(value = "size", defaultValue = "5") Integer size){
+                          @RequestParam(value = "size", defaultValue = "5") Integer size,
+                          @RequestParam(value = "search", required = false) String search){
 
-        int questionCount = questionService.getQuestionNum();
+        int questionCount;
+        String condition = "";
+        PaginationDTO pagination = new PaginationDTO();
+        if (search != null && search.length() > 0){
+            String[] keyWords = search.split(" ");
+            for (String keyWord : keyWords) {
+                condition += keyWord+"|";
+            }
+            condition = condition.substring(0, condition.length()-1);
+            pagination.setSearch(condition);
+            questionCount = questionService.getQuestionNumBySearch(condition);
+        }else {
+            questionCount = questionService.getQuestionNum();
+        }
         int pageCount = (questionCount % size == 0) ? questionCount / size : (questionCount / size) + 1;
         curPage = Math.max(1, curPage);
         curPage = Math.min(curPage, pageCount);
-        List<QuestionDTO> questionDTOList = questionService.queryQuestionPerPage(curPage, size);
+        List<QuestionDTO> questionDTOList = questionService.queryQuestionPerPage(condition, curPage, size);
 
-        PaginationDTO pagination = new PaginationDTO();
         pagination.setQuestions(questionDTOList);
 
         pagination.setPageInfo(curPage, pageCount);
